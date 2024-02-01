@@ -1,0 +1,1633 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement_while
+Rule 1     statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET
+Rule 2     expressions -> expression
+Rule 3     expressions -> expression LOGICAL expressions
+Rule 4     expression -> IDENTIFIER
+Rule 5     expression -> NUMBER
+Rule 6     expression -> BOOLEAN
+Rule 7     expression -> NULL
+Rule 8     expression -> STRING
+Rule 9     expression -> expression BITWISE expression
+Rule 10    expression -> UBITWISE expression
+Rule 11    expression -> expression COMPARISON expression
+Rule 12    expression -> expression PLUS expression
+Rule 13    expression -> expression MINUS expression
+Rule 14    expression -> expression TIMES expression
+Rule 15    expression -> expression DIVIDE expression
+Rule 16    expression -> LPAREN expression RPAREN
+Rule 17    expression -> ULOGICAL expression
+Rule 18    statements -> statement
+Rule 19    statements -> statement statements
+Rule 20    statement -> assign_stmt
+Rule 21    statement -> c_log_stmt
+Rule 22    statement -> statement_while
+Rule 23    c_log_stmt -> C_LOG LPAREN args RPAREN
+Rule 24    args -> expression
+Rule 25    args -> expression COMMA args
+Rule 26    assign_stmt -> TYPE IDENTIFIER ASSIGN expressions
+Rule 27    assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign
+Rule 28    assign_stmt -> IDENTIFIER ASSIGN expressions
+Rule 29    assign_stmt -> IDENTIFIER SHORTHAND expressions
+Rule 30    assign_stmt -> IDENTIFIER INCREMENT
+Rule 31    assign_stmt -> IDENTIFIER DECREMENT
+Rule 32    assign_stmt -> INCREMENT IDENTIFIER
+Rule 33    assign_stmt -> DECREMENT IDENTIFIER
+Rule 34    multiple_assign -> IDENTIFIER ASSIGN expressions
+Rule 35    multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign
+
+Terminals, with rules where they appear
+
+ASSIGN               : 26 27 28 34 35
+BITWISE              : 9
+BOOLEAN              : 6
+COMMA                : 25 27 35
+COMPARISON           : 11
+C_LOG                : 23
+DECREMENT            : 31 33
+DIVIDE               : 15
+IDENTIFIER           : 4 26 27 28 29 30 31 32 33 34 35
+INCREMENT            : 30 32
+LBRACKET             : 1
+LOGICAL              : 3
+LPAREN               : 1 16 23
+MINUS                : 13
+NULL                 : 7
+NUMBER               : 5
+PLUS                 : 12
+RBRACKET             : 1
+RPAREN               : 1 16 23
+SHORTHAND            : 29
+STRING               : 8
+TIMES                : 14
+TYPE                 : 26 27
+UBITWISE             : 10
+ULOGICAL             : 17
+WHILE                : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+args                 : 23 25
+assign_stmt          : 20
+c_log_stmt           : 21
+expression           : 2 3 9 9 10 11 11 12 12 13 13 14 14 15 15 16 17 24 25 27
+expressions          : 1 3 26 28 29 34 35
+multiple_assign      : 27 35
+statement            : 18 19
+statement_while      : 22 0
+statements           : 1 19
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement_while
+    (1) statement_while -> . WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET
+
+    WHILE           shift and go to state 2
+
+    statement_while                shift and go to state 1
+
+state 1
+
+    (0) S' -> statement_while .
+
+
+
+state 2
+
+    (1) statement_while -> WHILE . LPAREN expressions RPAREN LBRACKET statements RBRACKET
+
+    LPAREN          shift and go to state 3
+
+
+state 3
+
+    (1) statement_while -> WHILE LPAREN . expressions RPAREN LBRACKET statements RBRACKET
+    (2) expressions -> . expression
+    (3) expressions -> . expression LOGICAL expressions
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expressions                    shift and go to state 5
+    expression                     shift and go to state 6
+
+state 4
+
+    (16) expression -> LPAREN . expression RPAREN
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 14
+
+state 5
+
+    (1) statement_while -> WHILE LPAREN expressions . RPAREN LBRACKET statements RBRACKET
+
+    RPAREN          shift and go to state 15
+
+
+state 6
+
+    (2) expressions -> expression .
+    (3) expressions -> expression . LOGICAL expressions
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+    RPAREN          reduce using rule 2 (expressions -> expression .)
+    TYPE            reduce using rule 2 (expressions -> expression .)
+    IDENTIFIER      reduce using rule 2 (expressions -> expression .)
+    INCREMENT       reduce using rule 2 (expressions -> expression .)
+    DECREMENT       reduce using rule 2 (expressions -> expression .)
+    C_LOG           reduce using rule 2 (expressions -> expression .)
+    WHILE           reduce using rule 2 (expressions -> expression .)
+    RBRACKET        reduce using rule 2 (expressions -> expression .)
+    COMMA           reduce using rule 2 (expressions -> expression .)
+    LOGICAL         shift and go to state 16
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+
+state 7
+
+    (4) expression -> IDENTIFIER .
+
+    LOGICAL         reduce using rule 4 (expression -> IDENTIFIER .)
+    BITWISE         reduce using rule 4 (expression -> IDENTIFIER .)
+    COMPARISON      reduce using rule 4 (expression -> IDENTIFIER .)
+    PLUS            reduce using rule 4 (expression -> IDENTIFIER .)
+    MINUS           reduce using rule 4 (expression -> IDENTIFIER .)
+    TIMES           reduce using rule 4 (expression -> IDENTIFIER .)
+    DIVIDE          reduce using rule 4 (expression -> IDENTIFIER .)
+    RPAREN          reduce using rule 4 (expression -> IDENTIFIER .)
+    TYPE            reduce using rule 4 (expression -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 4 (expression -> IDENTIFIER .)
+    INCREMENT       reduce using rule 4 (expression -> IDENTIFIER .)
+    DECREMENT       reduce using rule 4 (expression -> IDENTIFIER .)
+    C_LOG           reduce using rule 4 (expression -> IDENTIFIER .)
+    WHILE           reduce using rule 4 (expression -> IDENTIFIER .)
+    RBRACKET        reduce using rule 4 (expression -> IDENTIFIER .)
+    COMMA           reduce using rule 4 (expression -> IDENTIFIER .)
+
+
+state 8
+
+    (5) expression -> NUMBER .
+
+    LOGICAL         reduce using rule 5 (expression -> NUMBER .)
+    BITWISE         reduce using rule 5 (expression -> NUMBER .)
+    COMPARISON      reduce using rule 5 (expression -> NUMBER .)
+    PLUS            reduce using rule 5 (expression -> NUMBER .)
+    MINUS           reduce using rule 5 (expression -> NUMBER .)
+    TIMES           reduce using rule 5 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 5 (expression -> NUMBER .)
+    RPAREN          reduce using rule 5 (expression -> NUMBER .)
+    TYPE            reduce using rule 5 (expression -> NUMBER .)
+    IDENTIFIER      reduce using rule 5 (expression -> NUMBER .)
+    INCREMENT       reduce using rule 5 (expression -> NUMBER .)
+    DECREMENT       reduce using rule 5 (expression -> NUMBER .)
+    C_LOG           reduce using rule 5 (expression -> NUMBER .)
+    WHILE           reduce using rule 5 (expression -> NUMBER .)
+    RBRACKET        reduce using rule 5 (expression -> NUMBER .)
+    COMMA           reduce using rule 5 (expression -> NUMBER .)
+
+
+state 9
+
+    (6) expression -> BOOLEAN .
+
+    LOGICAL         reduce using rule 6 (expression -> BOOLEAN .)
+    BITWISE         reduce using rule 6 (expression -> BOOLEAN .)
+    COMPARISON      reduce using rule 6 (expression -> BOOLEAN .)
+    PLUS            reduce using rule 6 (expression -> BOOLEAN .)
+    MINUS           reduce using rule 6 (expression -> BOOLEAN .)
+    TIMES           reduce using rule 6 (expression -> BOOLEAN .)
+    DIVIDE          reduce using rule 6 (expression -> BOOLEAN .)
+    RPAREN          reduce using rule 6 (expression -> BOOLEAN .)
+    TYPE            reduce using rule 6 (expression -> BOOLEAN .)
+    IDENTIFIER      reduce using rule 6 (expression -> BOOLEAN .)
+    INCREMENT       reduce using rule 6 (expression -> BOOLEAN .)
+    DECREMENT       reduce using rule 6 (expression -> BOOLEAN .)
+    C_LOG           reduce using rule 6 (expression -> BOOLEAN .)
+    WHILE           reduce using rule 6 (expression -> BOOLEAN .)
+    RBRACKET        reduce using rule 6 (expression -> BOOLEAN .)
+    COMMA           reduce using rule 6 (expression -> BOOLEAN .)
+
+
+state 10
+
+    (7) expression -> NULL .
+
+    LOGICAL         reduce using rule 7 (expression -> NULL .)
+    BITWISE         reduce using rule 7 (expression -> NULL .)
+    COMPARISON      reduce using rule 7 (expression -> NULL .)
+    PLUS            reduce using rule 7 (expression -> NULL .)
+    MINUS           reduce using rule 7 (expression -> NULL .)
+    TIMES           reduce using rule 7 (expression -> NULL .)
+    DIVIDE          reduce using rule 7 (expression -> NULL .)
+    RPAREN          reduce using rule 7 (expression -> NULL .)
+    TYPE            reduce using rule 7 (expression -> NULL .)
+    IDENTIFIER      reduce using rule 7 (expression -> NULL .)
+    INCREMENT       reduce using rule 7 (expression -> NULL .)
+    DECREMENT       reduce using rule 7 (expression -> NULL .)
+    C_LOG           reduce using rule 7 (expression -> NULL .)
+    WHILE           reduce using rule 7 (expression -> NULL .)
+    RBRACKET        reduce using rule 7 (expression -> NULL .)
+    COMMA           reduce using rule 7 (expression -> NULL .)
+
+
+state 11
+
+    (8) expression -> STRING .
+
+    LOGICAL         reduce using rule 8 (expression -> STRING .)
+    BITWISE         reduce using rule 8 (expression -> STRING .)
+    COMPARISON      reduce using rule 8 (expression -> STRING .)
+    PLUS            reduce using rule 8 (expression -> STRING .)
+    MINUS           reduce using rule 8 (expression -> STRING .)
+    TIMES           reduce using rule 8 (expression -> STRING .)
+    DIVIDE          reduce using rule 8 (expression -> STRING .)
+    RPAREN          reduce using rule 8 (expression -> STRING .)
+    TYPE            reduce using rule 8 (expression -> STRING .)
+    IDENTIFIER      reduce using rule 8 (expression -> STRING .)
+    INCREMENT       reduce using rule 8 (expression -> STRING .)
+    DECREMENT       reduce using rule 8 (expression -> STRING .)
+    C_LOG           reduce using rule 8 (expression -> STRING .)
+    WHILE           reduce using rule 8 (expression -> STRING .)
+    RBRACKET        reduce using rule 8 (expression -> STRING .)
+    COMMA           reduce using rule 8 (expression -> STRING .)
+
+
+state 12
+
+    (10) expression -> UBITWISE . expression
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 23
+
+state 13
+
+    (17) expression -> ULOGICAL . expression
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 24
+
+state 14
+
+    (16) expression -> LPAREN expression . RPAREN
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+    RPAREN          shift and go to state 25
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+
+state 15
+
+    (1) statement_while -> WHILE LPAREN expressions RPAREN . LBRACKET statements RBRACKET
+
+    LBRACKET        shift and go to state 26
+
+
+state 16
+
+    (3) expressions -> expression LOGICAL . expressions
+    (2) expressions -> . expression
+    (3) expressions -> . expression LOGICAL expressions
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 6
+    expressions                    shift and go to state 27
+
+state 17
+
+    (9) expression -> expression BITWISE . expression
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 28
+
+state 18
+
+    (11) expression -> expression COMPARISON . expression
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 29
+
+state 19
+
+    (12) expression -> expression PLUS . expression
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 30
+
+state 20
+
+    (13) expression -> expression MINUS . expression
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 31
+
+state 21
+
+    (14) expression -> expression TIMES . expression
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 32
+
+state 22
+
+    (15) expression -> expression DIVIDE . expression
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 33
+
+state 23
+
+    (10) expression -> UBITWISE expression .
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for BITWISE resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    LOGICAL         reduce using rule 10 (expression -> UBITWISE expression .)
+    RPAREN          reduce using rule 10 (expression -> UBITWISE expression .)
+    TYPE            reduce using rule 10 (expression -> UBITWISE expression .)
+    IDENTIFIER      reduce using rule 10 (expression -> UBITWISE expression .)
+    INCREMENT       reduce using rule 10 (expression -> UBITWISE expression .)
+    DECREMENT       reduce using rule 10 (expression -> UBITWISE expression .)
+    C_LOG           reduce using rule 10 (expression -> UBITWISE expression .)
+    WHILE           reduce using rule 10 (expression -> UBITWISE expression .)
+    RBRACKET        reduce using rule 10 (expression -> UBITWISE expression .)
+    COMMA           reduce using rule 10 (expression -> UBITWISE expression .)
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+  ! BITWISE         [ reduce using rule 10 (expression -> UBITWISE expression .) ]
+  ! COMPARISON      [ reduce using rule 10 (expression -> UBITWISE expression .) ]
+  ! PLUS            [ reduce using rule 10 (expression -> UBITWISE expression .) ]
+  ! MINUS           [ reduce using rule 10 (expression -> UBITWISE expression .) ]
+  ! TIMES           [ reduce using rule 10 (expression -> UBITWISE expression .) ]
+  ! DIVIDE          [ reduce using rule 10 (expression -> UBITWISE expression .) ]
+
+
+state 24
+
+    (17) expression -> ULOGICAL expression .
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for BITWISE resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    LOGICAL         reduce using rule 17 (expression -> ULOGICAL expression .)
+    RPAREN          reduce using rule 17 (expression -> ULOGICAL expression .)
+    TYPE            reduce using rule 17 (expression -> ULOGICAL expression .)
+    IDENTIFIER      reduce using rule 17 (expression -> ULOGICAL expression .)
+    INCREMENT       reduce using rule 17 (expression -> ULOGICAL expression .)
+    DECREMENT       reduce using rule 17 (expression -> ULOGICAL expression .)
+    C_LOG           reduce using rule 17 (expression -> ULOGICAL expression .)
+    WHILE           reduce using rule 17 (expression -> ULOGICAL expression .)
+    RBRACKET        reduce using rule 17 (expression -> ULOGICAL expression .)
+    COMMA           reduce using rule 17 (expression -> ULOGICAL expression .)
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+  ! BITWISE         [ reduce using rule 17 (expression -> ULOGICAL expression .) ]
+  ! COMPARISON      [ reduce using rule 17 (expression -> ULOGICAL expression .) ]
+  ! PLUS            [ reduce using rule 17 (expression -> ULOGICAL expression .) ]
+  ! MINUS           [ reduce using rule 17 (expression -> ULOGICAL expression .) ]
+  ! TIMES           [ reduce using rule 17 (expression -> ULOGICAL expression .) ]
+  ! DIVIDE          [ reduce using rule 17 (expression -> ULOGICAL expression .) ]
+
+
+state 25
+
+    (16) expression -> LPAREN expression RPAREN .
+
+    LOGICAL         reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    BITWISE         reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    COMPARISON      reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    TYPE            reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    IDENTIFIER      reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    INCREMENT       reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    DECREMENT       reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    C_LOG           reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    WHILE           reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 16 (expression -> LPAREN expression RPAREN .)
+
+
+state 26
+
+    (1) statement_while -> WHILE LPAREN expressions RPAREN LBRACKET . statements RBRACKET
+    (18) statements -> . statement
+    (19) statements -> . statement statements
+    (20) statement -> . assign_stmt
+    (21) statement -> . c_log_stmt
+    (22) statement -> . statement_while
+    (26) assign_stmt -> . TYPE IDENTIFIER ASSIGN expressions
+    (27) assign_stmt -> . TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign
+    (28) assign_stmt -> . IDENTIFIER ASSIGN expressions
+    (29) assign_stmt -> . IDENTIFIER SHORTHAND expressions
+    (30) assign_stmt -> . IDENTIFIER INCREMENT
+    (31) assign_stmt -> . IDENTIFIER DECREMENT
+    (32) assign_stmt -> . INCREMENT IDENTIFIER
+    (33) assign_stmt -> . DECREMENT IDENTIFIER
+    (23) c_log_stmt -> . C_LOG LPAREN args RPAREN
+    (1) statement_while -> . WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET
+
+    TYPE            shift and go to state 39
+    IDENTIFIER      shift and go to state 40
+    INCREMENT       shift and go to state 41
+    DECREMENT       shift and go to state 42
+    C_LOG           shift and go to state 43
+    WHILE           shift and go to state 2
+
+    statements                     shift and go to state 34
+    statement                      shift and go to state 35
+    assign_stmt                    shift and go to state 36
+    c_log_stmt                     shift and go to state 37
+    statement_while                shift and go to state 38
+
+state 27
+
+    (3) expressions -> expression LOGICAL expressions .
+
+    RPAREN          reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+    TYPE            reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+    IDENTIFIER      reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+    INCREMENT       reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+    DECREMENT       reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+    C_LOG           reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+    WHILE           reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+    RBRACKET        reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+    COMMA           reduce using rule 3 (expressions -> expression LOGICAL expressions .)
+
+
+state 28
+
+    (9) expression -> expression BITWISE expression .
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for BITWISE resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    LOGICAL         reduce using rule 9 (expression -> expression BITWISE expression .)
+    RPAREN          reduce using rule 9 (expression -> expression BITWISE expression .)
+    TYPE            reduce using rule 9 (expression -> expression BITWISE expression .)
+    IDENTIFIER      reduce using rule 9 (expression -> expression BITWISE expression .)
+    INCREMENT       reduce using rule 9 (expression -> expression BITWISE expression .)
+    DECREMENT       reduce using rule 9 (expression -> expression BITWISE expression .)
+    C_LOG           reduce using rule 9 (expression -> expression BITWISE expression .)
+    WHILE           reduce using rule 9 (expression -> expression BITWISE expression .)
+    RBRACKET        reduce using rule 9 (expression -> expression BITWISE expression .)
+    COMMA           reduce using rule 9 (expression -> expression BITWISE expression .)
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+  ! BITWISE         [ reduce using rule 9 (expression -> expression BITWISE expression .) ]
+  ! COMPARISON      [ reduce using rule 9 (expression -> expression BITWISE expression .) ]
+  ! PLUS            [ reduce using rule 9 (expression -> expression BITWISE expression .) ]
+  ! MINUS           [ reduce using rule 9 (expression -> expression BITWISE expression .) ]
+  ! TIMES           [ reduce using rule 9 (expression -> expression BITWISE expression .) ]
+  ! DIVIDE          [ reduce using rule 9 (expression -> expression BITWISE expression .) ]
+
+
+state 29
+
+    (11) expression -> expression COMPARISON expression .
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for BITWISE resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    LOGICAL         reduce using rule 11 (expression -> expression COMPARISON expression .)
+    RPAREN          reduce using rule 11 (expression -> expression COMPARISON expression .)
+    TYPE            reduce using rule 11 (expression -> expression COMPARISON expression .)
+    IDENTIFIER      reduce using rule 11 (expression -> expression COMPARISON expression .)
+    INCREMENT       reduce using rule 11 (expression -> expression COMPARISON expression .)
+    DECREMENT       reduce using rule 11 (expression -> expression COMPARISON expression .)
+    C_LOG           reduce using rule 11 (expression -> expression COMPARISON expression .)
+    WHILE           reduce using rule 11 (expression -> expression COMPARISON expression .)
+    RBRACKET        reduce using rule 11 (expression -> expression COMPARISON expression .)
+    COMMA           reduce using rule 11 (expression -> expression COMPARISON expression .)
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+  ! BITWISE         [ reduce using rule 11 (expression -> expression COMPARISON expression .) ]
+  ! COMPARISON      [ reduce using rule 11 (expression -> expression COMPARISON expression .) ]
+  ! PLUS            [ reduce using rule 11 (expression -> expression COMPARISON expression .) ]
+  ! MINUS           [ reduce using rule 11 (expression -> expression COMPARISON expression .) ]
+  ! TIMES           [ reduce using rule 11 (expression -> expression COMPARISON expression .) ]
+  ! DIVIDE          [ reduce using rule 11 (expression -> expression COMPARISON expression .) ]
+
+
+state 30
+
+    (12) expression -> expression PLUS expression .
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for BITWISE resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    LOGICAL         reduce using rule 12 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 12 (expression -> expression PLUS expression .)
+    TYPE            reduce using rule 12 (expression -> expression PLUS expression .)
+    IDENTIFIER      reduce using rule 12 (expression -> expression PLUS expression .)
+    INCREMENT       reduce using rule 12 (expression -> expression PLUS expression .)
+    DECREMENT       reduce using rule 12 (expression -> expression PLUS expression .)
+    C_LOG           reduce using rule 12 (expression -> expression PLUS expression .)
+    WHILE           reduce using rule 12 (expression -> expression PLUS expression .)
+    RBRACKET        reduce using rule 12 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 12 (expression -> expression PLUS expression .)
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+  ! BITWISE         [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! COMPARISON      [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! TIMES           [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+
+
+state 31
+
+    (13) expression -> expression MINUS expression .
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for BITWISE resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    LOGICAL         reduce using rule 13 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 13 (expression -> expression MINUS expression .)
+    TYPE            reduce using rule 13 (expression -> expression MINUS expression .)
+    IDENTIFIER      reduce using rule 13 (expression -> expression MINUS expression .)
+    INCREMENT       reduce using rule 13 (expression -> expression MINUS expression .)
+    DECREMENT       reduce using rule 13 (expression -> expression MINUS expression .)
+    C_LOG           reduce using rule 13 (expression -> expression MINUS expression .)
+    WHILE           reduce using rule 13 (expression -> expression MINUS expression .)
+    RBRACKET        reduce using rule 13 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 13 (expression -> expression MINUS expression .)
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+  ! BITWISE         [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! COMPARISON      [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! TIMES           [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+
+
+state 32
+
+    (14) expression -> expression TIMES expression .
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for BITWISE resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    LOGICAL         reduce using rule 14 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 14 (expression -> expression TIMES expression .)
+    TYPE            reduce using rule 14 (expression -> expression TIMES expression .)
+    IDENTIFIER      reduce using rule 14 (expression -> expression TIMES expression .)
+    INCREMENT       reduce using rule 14 (expression -> expression TIMES expression .)
+    DECREMENT       reduce using rule 14 (expression -> expression TIMES expression .)
+    C_LOG           reduce using rule 14 (expression -> expression TIMES expression .)
+    WHILE           reduce using rule 14 (expression -> expression TIMES expression .)
+    RBRACKET        reduce using rule 14 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 14 (expression -> expression TIMES expression .)
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+  ! BITWISE         [ reduce using rule 14 (expression -> expression TIMES expression .) ]
+  ! COMPARISON      [ reduce using rule 14 (expression -> expression TIMES expression .) ]
+  ! PLUS            [ reduce using rule 14 (expression -> expression TIMES expression .) ]
+  ! MINUS           [ reduce using rule 14 (expression -> expression TIMES expression .) ]
+  ! TIMES           [ reduce using rule 14 (expression -> expression TIMES expression .) ]
+  ! DIVIDE          [ reduce using rule 14 (expression -> expression TIMES expression .) ]
+
+
+state 33
+
+    (15) expression -> expression DIVIDE expression .
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for BITWISE resolved as shift
+  ! shift/reduce conflict for COMPARISON resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    LOGICAL         reduce using rule 15 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 15 (expression -> expression DIVIDE expression .)
+    TYPE            reduce using rule 15 (expression -> expression DIVIDE expression .)
+    IDENTIFIER      reduce using rule 15 (expression -> expression DIVIDE expression .)
+    INCREMENT       reduce using rule 15 (expression -> expression DIVIDE expression .)
+    DECREMENT       reduce using rule 15 (expression -> expression DIVIDE expression .)
+    C_LOG           reduce using rule 15 (expression -> expression DIVIDE expression .)
+    WHILE           reduce using rule 15 (expression -> expression DIVIDE expression .)
+    RBRACKET        reduce using rule 15 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 15 (expression -> expression DIVIDE expression .)
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+  ! BITWISE         [ reduce using rule 15 (expression -> expression DIVIDE expression .) ]
+  ! COMPARISON      [ reduce using rule 15 (expression -> expression DIVIDE expression .) ]
+  ! PLUS            [ reduce using rule 15 (expression -> expression DIVIDE expression .) ]
+  ! MINUS           [ reduce using rule 15 (expression -> expression DIVIDE expression .) ]
+  ! TIMES           [ reduce using rule 15 (expression -> expression DIVIDE expression .) ]
+  ! DIVIDE          [ reduce using rule 15 (expression -> expression DIVIDE expression .) ]
+
+
+state 34
+
+    (1) statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements . RBRACKET
+
+    RBRACKET        shift and go to state 44
+
+
+state 35
+
+    (18) statements -> statement .
+    (19) statements -> statement . statements
+    (18) statements -> . statement
+    (19) statements -> . statement statements
+    (20) statement -> . assign_stmt
+    (21) statement -> . c_log_stmt
+    (22) statement -> . statement_while
+    (26) assign_stmt -> . TYPE IDENTIFIER ASSIGN expressions
+    (27) assign_stmt -> . TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign
+    (28) assign_stmt -> . IDENTIFIER ASSIGN expressions
+    (29) assign_stmt -> . IDENTIFIER SHORTHAND expressions
+    (30) assign_stmt -> . IDENTIFIER INCREMENT
+    (31) assign_stmt -> . IDENTIFIER DECREMENT
+    (32) assign_stmt -> . INCREMENT IDENTIFIER
+    (33) assign_stmt -> . DECREMENT IDENTIFIER
+    (23) c_log_stmt -> . C_LOG LPAREN args RPAREN
+    (1) statement_while -> . WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET
+
+    RBRACKET        reduce using rule 18 (statements -> statement .)
+    TYPE            shift and go to state 39
+    IDENTIFIER      shift and go to state 40
+    INCREMENT       shift and go to state 41
+    DECREMENT       shift and go to state 42
+    C_LOG           shift and go to state 43
+    WHILE           shift and go to state 2
+
+    statement                      shift and go to state 35
+    statements                     shift and go to state 45
+    assign_stmt                    shift and go to state 36
+    c_log_stmt                     shift and go to state 37
+    statement_while                shift and go to state 38
+
+state 36
+
+    (20) statement -> assign_stmt .
+
+    TYPE            reduce using rule 20 (statement -> assign_stmt .)
+    IDENTIFIER      reduce using rule 20 (statement -> assign_stmt .)
+    INCREMENT       reduce using rule 20 (statement -> assign_stmt .)
+    DECREMENT       reduce using rule 20 (statement -> assign_stmt .)
+    C_LOG           reduce using rule 20 (statement -> assign_stmt .)
+    WHILE           reduce using rule 20 (statement -> assign_stmt .)
+    RBRACKET        reduce using rule 20 (statement -> assign_stmt .)
+
+
+state 37
+
+    (21) statement -> c_log_stmt .
+
+    TYPE            reduce using rule 21 (statement -> c_log_stmt .)
+    IDENTIFIER      reduce using rule 21 (statement -> c_log_stmt .)
+    INCREMENT       reduce using rule 21 (statement -> c_log_stmt .)
+    DECREMENT       reduce using rule 21 (statement -> c_log_stmt .)
+    C_LOG           reduce using rule 21 (statement -> c_log_stmt .)
+    WHILE           reduce using rule 21 (statement -> c_log_stmt .)
+    RBRACKET        reduce using rule 21 (statement -> c_log_stmt .)
+
+
+state 38
+
+    (22) statement -> statement_while .
+
+    TYPE            reduce using rule 22 (statement -> statement_while .)
+    IDENTIFIER      reduce using rule 22 (statement -> statement_while .)
+    INCREMENT       reduce using rule 22 (statement -> statement_while .)
+    DECREMENT       reduce using rule 22 (statement -> statement_while .)
+    C_LOG           reduce using rule 22 (statement -> statement_while .)
+    WHILE           reduce using rule 22 (statement -> statement_while .)
+    RBRACKET        reduce using rule 22 (statement -> statement_while .)
+
+
+state 39
+
+    (26) assign_stmt -> TYPE . IDENTIFIER ASSIGN expressions
+    (27) assign_stmt -> TYPE . IDENTIFIER ASSIGN expression COMMA multiple_assign
+
+    IDENTIFIER      shift and go to state 46
+
+
+state 40
+
+    (28) assign_stmt -> IDENTIFIER . ASSIGN expressions
+    (29) assign_stmt -> IDENTIFIER . SHORTHAND expressions
+    (30) assign_stmt -> IDENTIFIER . INCREMENT
+    (31) assign_stmt -> IDENTIFIER . DECREMENT
+
+    ASSIGN          shift and go to state 47
+    SHORTHAND       shift and go to state 48
+    INCREMENT       shift and go to state 49
+    DECREMENT       shift and go to state 50
+
+
+state 41
+
+    (32) assign_stmt -> INCREMENT . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 51
+
+
+state 42
+
+    (33) assign_stmt -> DECREMENT . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 52
+
+
+state 43
+
+    (23) c_log_stmt -> C_LOG . LPAREN args RPAREN
+
+    LPAREN          shift and go to state 53
+
+
+state 44
+
+    (1) statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .
+
+    $end            reduce using rule 1 (statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .)
+    TYPE            reduce using rule 1 (statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .)
+    IDENTIFIER      reduce using rule 1 (statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .)
+    INCREMENT       reduce using rule 1 (statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .)
+    DECREMENT       reduce using rule 1 (statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .)
+    C_LOG           reduce using rule 1 (statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .)
+    WHILE           reduce using rule 1 (statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .)
+    RBRACKET        reduce using rule 1 (statement_while -> WHILE LPAREN expressions RPAREN LBRACKET statements RBRACKET .)
+
+
+state 45
+
+    (19) statements -> statement statements .
+
+    RBRACKET        reduce using rule 19 (statements -> statement statements .)
+
+
+state 46
+
+    (26) assign_stmt -> TYPE IDENTIFIER . ASSIGN expressions
+    (27) assign_stmt -> TYPE IDENTIFIER . ASSIGN expression COMMA multiple_assign
+
+    ASSIGN          shift and go to state 54
+
+
+state 47
+
+    (28) assign_stmt -> IDENTIFIER ASSIGN . expressions
+    (2) expressions -> . expression
+    (3) expressions -> . expression LOGICAL expressions
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expressions                    shift and go to state 55
+    expression                     shift and go to state 6
+
+state 48
+
+    (29) assign_stmt -> IDENTIFIER SHORTHAND . expressions
+    (2) expressions -> . expression
+    (3) expressions -> . expression LOGICAL expressions
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expressions                    shift and go to state 56
+    expression                     shift and go to state 6
+
+state 49
+
+    (30) assign_stmt -> IDENTIFIER INCREMENT .
+
+    TYPE            reduce using rule 30 (assign_stmt -> IDENTIFIER INCREMENT .)
+    IDENTIFIER      reduce using rule 30 (assign_stmt -> IDENTIFIER INCREMENT .)
+    INCREMENT       reduce using rule 30 (assign_stmt -> IDENTIFIER INCREMENT .)
+    DECREMENT       reduce using rule 30 (assign_stmt -> IDENTIFIER INCREMENT .)
+    C_LOG           reduce using rule 30 (assign_stmt -> IDENTIFIER INCREMENT .)
+    WHILE           reduce using rule 30 (assign_stmt -> IDENTIFIER INCREMENT .)
+    RBRACKET        reduce using rule 30 (assign_stmt -> IDENTIFIER INCREMENT .)
+
+
+state 50
+
+    (31) assign_stmt -> IDENTIFIER DECREMENT .
+
+    TYPE            reduce using rule 31 (assign_stmt -> IDENTIFIER DECREMENT .)
+    IDENTIFIER      reduce using rule 31 (assign_stmt -> IDENTIFIER DECREMENT .)
+    INCREMENT       reduce using rule 31 (assign_stmt -> IDENTIFIER DECREMENT .)
+    DECREMENT       reduce using rule 31 (assign_stmt -> IDENTIFIER DECREMENT .)
+    C_LOG           reduce using rule 31 (assign_stmt -> IDENTIFIER DECREMENT .)
+    WHILE           reduce using rule 31 (assign_stmt -> IDENTIFIER DECREMENT .)
+    RBRACKET        reduce using rule 31 (assign_stmt -> IDENTIFIER DECREMENT .)
+
+
+state 51
+
+    (32) assign_stmt -> INCREMENT IDENTIFIER .
+
+    TYPE            reduce using rule 32 (assign_stmt -> INCREMENT IDENTIFIER .)
+    IDENTIFIER      reduce using rule 32 (assign_stmt -> INCREMENT IDENTIFIER .)
+    INCREMENT       reduce using rule 32 (assign_stmt -> INCREMENT IDENTIFIER .)
+    DECREMENT       reduce using rule 32 (assign_stmt -> INCREMENT IDENTIFIER .)
+    C_LOG           reduce using rule 32 (assign_stmt -> INCREMENT IDENTIFIER .)
+    WHILE           reduce using rule 32 (assign_stmt -> INCREMENT IDENTIFIER .)
+    RBRACKET        reduce using rule 32 (assign_stmt -> INCREMENT IDENTIFIER .)
+
+
+state 52
+
+    (33) assign_stmt -> DECREMENT IDENTIFIER .
+
+    TYPE            reduce using rule 33 (assign_stmt -> DECREMENT IDENTIFIER .)
+    IDENTIFIER      reduce using rule 33 (assign_stmt -> DECREMENT IDENTIFIER .)
+    INCREMENT       reduce using rule 33 (assign_stmt -> DECREMENT IDENTIFIER .)
+    DECREMENT       reduce using rule 33 (assign_stmt -> DECREMENT IDENTIFIER .)
+    C_LOG           reduce using rule 33 (assign_stmt -> DECREMENT IDENTIFIER .)
+    WHILE           reduce using rule 33 (assign_stmt -> DECREMENT IDENTIFIER .)
+    RBRACKET        reduce using rule 33 (assign_stmt -> DECREMENT IDENTIFIER .)
+
+
+state 53
+
+    (23) c_log_stmt -> C_LOG LPAREN . args RPAREN
+    (24) args -> . expression
+    (25) args -> . expression COMMA args
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    args                           shift and go to state 57
+    expression                     shift and go to state 58
+
+state 54
+
+    (26) assign_stmt -> TYPE IDENTIFIER ASSIGN . expressions
+    (27) assign_stmt -> TYPE IDENTIFIER ASSIGN . expression COMMA multiple_assign
+    (2) expressions -> . expression
+    (3) expressions -> . expression LOGICAL expressions
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expressions                    shift and go to state 59
+    expression                     shift and go to state 60
+
+state 55
+
+    (28) assign_stmt -> IDENTIFIER ASSIGN expressions .
+
+    TYPE            reduce using rule 28 (assign_stmt -> IDENTIFIER ASSIGN expressions .)
+    IDENTIFIER      reduce using rule 28 (assign_stmt -> IDENTIFIER ASSIGN expressions .)
+    INCREMENT       reduce using rule 28 (assign_stmt -> IDENTIFIER ASSIGN expressions .)
+    DECREMENT       reduce using rule 28 (assign_stmt -> IDENTIFIER ASSIGN expressions .)
+    C_LOG           reduce using rule 28 (assign_stmt -> IDENTIFIER ASSIGN expressions .)
+    WHILE           reduce using rule 28 (assign_stmt -> IDENTIFIER ASSIGN expressions .)
+    RBRACKET        reduce using rule 28 (assign_stmt -> IDENTIFIER ASSIGN expressions .)
+
+
+state 56
+
+    (29) assign_stmt -> IDENTIFIER SHORTHAND expressions .
+
+    TYPE            reduce using rule 29 (assign_stmt -> IDENTIFIER SHORTHAND expressions .)
+    IDENTIFIER      reduce using rule 29 (assign_stmt -> IDENTIFIER SHORTHAND expressions .)
+    INCREMENT       reduce using rule 29 (assign_stmt -> IDENTIFIER SHORTHAND expressions .)
+    DECREMENT       reduce using rule 29 (assign_stmt -> IDENTIFIER SHORTHAND expressions .)
+    C_LOG           reduce using rule 29 (assign_stmt -> IDENTIFIER SHORTHAND expressions .)
+    WHILE           reduce using rule 29 (assign_stmt -> IDENTIFIER SHORTHAND expressions .)
+    RBRACKET        reduce using rule 29 (assign_stmt -> IDENTIFIER SHORTHAND expressions .)
+
+
+state 57
+
+    (23) c_log_stmt -> C_LOG LPAREN args . RPAREN
+
+    RPAREN          shift and go to state 61
+
+
+state 58
+
+    (24) args -> expression .
+    (25) args -> expression . COMMA args
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+    RPAREN          reduce using rule 24 (args -> expression .)
+    COMMA           shift and go to state 62
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+
+state 59
+
+    (26) assign_stmt -> TYPE IDENTIFIER ASSIGN expressions .
+
+    TYPE            reduce using rule 26 (assign_stmt -> TYPE IDENTIFIER ASSIGN expressions .)
+    IDENTIFIER      reduce using rule 26 (assign_stmt -> TYPE IDENTIFIER ASSIGN expressions .)
+    INCREMENT       reduce using rule 26 (assign_stmt -> TYPE IDENTIFIER ASSIGN expressions .)
+    DECREMENT       reduce using rule 26 (assign_stmt -> TYPE IDENTIFIER ASSIGN expressions .)
+    C_LOG           reduce using rule 26 (assign_stmt -> TYPE IDENTIFIER ASSIGN expressions .)
+    WHILE           reduce using rule 26 (assign_stmt -> TYPE IDENTIFIER ASSIGN expressions .)
+    RBRACKET        reduce using rule 26 (assign_stmt -> TYPE IDENTIFIER ASSIGN expressions .)
+
+
+state 60
+
+    (27) assign_stmt -> TYPE IDENTIFIER ASSIGN expression . COMMA multiple_assign
+    (2) expressions -> expression .
+    (3) expressions -> expression . LOGICAL expressions
+    (9) expression -> expression . BITWISE expression
+    (11) expression -> expression . COMPARISON expression
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+
+    COMMA           shift and go to state 63
+    TYPE            reduce using rule 2 (expressions -> expression .)
+    IDENTIFIER      reduce using rule 2 (expressions -> expression .)
+    INCREMENT       reduce using rule 2 (expressions -> expression .)
+    DECREMENT       reduce using rule 2 (expressions -> expression .)
+    C_LOG           reduce using rule 2 (expressions -> expression .)
+    WHILE           reduce using rule 2 (expressions -> expression .)
+    RBRACKET        reduce using rule 2 (expressions -> expression .)
+    LOGICAL         shift and go to state 16
+    BITWISE         shift and go to state 17
+    COMPARISON      shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    TIMES           shift and go to state 21
+    DIVIDE          shift and go to state 22
+
+
+state 61
+
+    (23) c_log_stmt -> C_LOG LPAREN args RPAREN .
+
+    TYPE            reduce using rule 23 (c_log_stmt -> C_LOG LPAREN args RPAREN .)
+    IDENTIFIER      reduce using rule 23 (c_log_stmt -> C_LOG LPAREN args RPAREN .)
+    INCREMENT       reduce using rule 23 (c_log_stmt -> C_LOG LPAREN args RPAREN .)
+    DECREMENT       reduce using rule 23 (c_log_stmt -> C_LOG LPAREN args RPAREN .)
+    C_LOG           reduce using rule 23 (c_log_stmt -> C_LOG LPAREN args RPAREN .)
+    WHILE           reduce using rule 23 (c_log_stmt -> C_LOG LPAREN args RPAREN .)
+    RBRACKET        reduce using rule 23 (c_log_stmt -> C_LOG LPAREN args RPAREN .)
+
+
+state 62
+
+    (25) args -> expression COMMA . args
+    (24) args -> . expression
+    (25) args -> . expression COMMA args
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expression                     shift and go to state 58
+    args                           shift and go to state 64
+
+state 63
+
+    (27) assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA . multiple_assign
+    (34) multiple_assign -> . IDENTIFIER ASSIGN expressions
+    (35) multiple_assign -> . IDENTIFIER ASSIGN expressions COMMA multiple_assign
+
+    IDENTIFIER      shift and go to state 65
+
+    multiple_assign                shift and go to state 66
+
+state 64
+
+    (25) args -> expression COMMA args .
+
+    RPAREN          reduce using rule 25 (args -> expression COMMA args .)
+
+
+state 65
+
+    (34) multiple_assign -> IDENTIFIER . ASSIGN expressions
+    (35) multiple_assign -> IDENTIFIER . ASSIGN expressions COMMA multiple_assign
+
+    ASSIGN          shift and go to state 67
+
+
+state 66
+
+    (27) assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign .
+
+    TYPE            reduce using rule 27 (assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign .)
+    IDENTIFIER      reduce using rule 27 (assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign .)
+    INCREMENT       reduce using rule 27 (assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign .)
+    DECREMENT       reduce using rule 27 (assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign .)
+    C_LOG           reduce using rule 27 (assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign .)
+    WHILE           reduce using rule 27 (assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign .)
+    RBRACKET        reduce using rule 27 (assign_stmt -> TYPE IDENTIFIER ASSIGN expression COMMA multiple_assign .)
+
+
+state 67
+
+    (34) multiple_assign -> IDENTIFIER ASSIGN . expressions
+    (35) multiple_assign -> IDENTIFIER ASSIGN . expressions COMMA multiple_assign
+    (2) expressions -> . expression
+    (3) expressions -> . expression LOGICAL expressions
+    (4) expression -> . IDENTIFIER
+    (5) expression -> . NUMBER
+    (6) expression -> . BOOLEAN
+    (7) expression -> . NULL
+    (8) expression -> . STRING
+    (9) expression -> . expression BITWISE expression
+    (10) expression -> . UBITWISE expression
+    (11) expression -> . expression COMPARISON expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . LPAREN expression RPAREN
+    (17) expression -> . ULOGICAL expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    BOOLEAN         shift and go to state 9
+    NULL            shift and go to state 10
+    STRING          shift and go to state 11
+    UBITWISE        shift and go to state 12
+    LPAREN          shift and go to state 4
+    ULOGICAL        shift and go to state 13
+
+    expressions                    shift and go to state 68
+    expression                     shift and go to state 6
+
+state 68
+
+    (34) multiple_assign -> IDENTIFIER ASSIGN expressions .
+    (35) multiple_assign -> IDENTIFIER ASSIGN expressions . COMMA multiple_assign
+
+    TYPE            reduce using rule 34 (multiple_assign -> IDENTIFIER ASSIGN expressions .)
+    IDENTIFIER      reduce using rule 34 (multiple_assign -> IDENTIFIER ASSIGN expressions .)
+    INCREMENT       reduce using rule 34 (multiple_assign -> IDENTIFIER ASSIGN expressions .)
+    DECREMENT       reduce using rule 34 (multiple_assign -> IDENTIFIER ASSIGN expressions .)
+    C_LOG           reduce using rule 34 (multiple_assign -> IDENTIFIER ASSIGN expressions .)
+    WHILE           reduce using rule 34 (multiple_assign -> IDENTIFIER ASSIGN expressions .)
+    RBRACKET        reduce using rule 34 (multiple_assign -> IDENTIFIER ASSIGN expressions .)
+    COMMA           shift and go to state 69
+
+
+state 69
+
+    (35) multiple_assign -> IDENTIFIER ASSIGN expressions COMMA . multiple_assign
+    (34) multiple_assign -> . IDENTIFIER ASSIGN expressions
+    (35) multiple_assign -> . IDENTIFIER ASSIGN expressions COMMA multiple_assign
+
+    IDENTIFIER      shift and go to state 65
+
+    multiple_assign                shift and go to state 70
+
+state 70
+
+    (35) multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign .
+
+    TYPE            reduce using rule 35 (multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign .)
+    IDENTIFIER      reduce using rule 35 (multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign .)
+    INCREMENT       reduce using rule 35 (multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign .)
+    DECREMENT       reduce using rule 35 (multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign .)
+    C_LOG           reduce using rule 35 (multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign .)
+    WHILE           reduce using rule 35 (multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign .)
+    RBRACKET        reduce using rule 35 (multiple_assign -> IDENTIFIER ASSIGN expressions COMMA multiple_assign .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for BITWISE in state 23 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 23 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 23 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 23 resolved as shift
+WARNING: shift/reduce conflict for BITWISE in state 24 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 24 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 24 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 24 resolved as shift
+WARNING: shift/reduce conflict for BITWISE in state 28 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 28 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 28 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 28 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 28 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 28 resolved as shift
+WARNING: shift/reduce conflict for BITWISE in state 29 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 29 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 29 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 29 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 29 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 29 resolved as shift
+WARNING: shift/reduce conflict for BITWISE in state 30 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 30 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 30 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 30 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 30 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 30 resolved as shift
+WARNING: shift/reduce conflict for BITWISE in state 31 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 31 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 31 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 31 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 31 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 31 resolved as shift
+WARNING: shift/reduce conflict for BITWISE in state 32 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 32 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 32 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 32 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 32 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 32 resolved as shift
+WARNING: shift/reduce conflict for BITWISE in state 33 resolved as shift
+WARNING: shift/reduce conflict for COMPARISON in state 33 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 33 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 33 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 33 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 33 resolved as shift

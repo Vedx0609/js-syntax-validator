@@ -1,0 +1,252 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> declaration SEMICOLON
+Rule 2     statement -> declaration
+Rule 3     declaration -> TYPE IDENTIFIER ASSIGN array
+Rule 4     array -> LBRACKET elements_opt RBRACKET
+Rule 5     elements_opt -> elements
+Rule 6     elements_opt -> elements COMMA
+Rule 7     elements_opt -> empty
+Rule 8     elements -> value
+Rule 9     elements -> elements COMMA value
+Rule 10    value -> NUMBER
+Rule 11    value -> STRING
+Rule 12    value -> BOOLEAN
+Rule 13    value -> NULL
+Rule 14    value -> array
+Rule 15    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ASSIGN               : 3
+BOOLEAN              : 12
+COMMA                : 6 9
+IDENTIFIER           : 3
+LBRACKET             : 4
+NULL                 : 13
+NUMBER               : 10
+RBRACKET             : 4
+SEMICOLON            : 1
+STRING               : 11
+TYPE                 : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+array                : 3 14
+declaration          : 1 2
+elements             : 5 6 9
+elements_opt         : 4
+empty                : 7
+statement            : 0
+value                : 8 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . declaration SEMICOLON
+    (2) statement -> . declaration
+    (3) declaration -> . TYPE IDENTIFIER ASSIGN array
+
+    TYPE            shift and go to state 3
+
+    statement                      shift and go to state 1
+    declaration                    shift and go to state 2
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> declaration . SEMICOLON
+    (2) statement -> declaration .
+
+    SEMICOLON       shift and go to state 4
+    $end            reduce using rule 2 (statement -> declaration .)
+
+
+state 3
+
+    (3) declaration -> TYPE . IDENTIFIER ASSIGN array
+
+    IDENTIFIER      shift and go to state 5
+
+
+state 4
+
+    (1) statement -> declaration SEMICOLON .
+
+    $end            reduce using rule 1 (statement -> declaration SEMICOLON .)
+
+
+state 5
+
+    (3) declaration -> TYPE IDENTIFIER . ASSIGN array
+
+    ASSIGN          shift and go to state 6
+
+
+state 6
+
+    (3) declaration -> TYPE IDENTIFIER ASSIGN . array
+    (4) array -> . LBRACKET elements_opt RBRACKET
+
+    LBRACKET        shift and go to state 8
+
+    array                          shift and go to state 7
+
+state 7
+
+    (3) declaration -> TYPE IDENTIFIER ASSIGN array .
+
+    SEMICOLON       reduce using rule 3 (declaration -> TYPE IDENTIFIER ASSIGN array .)
+    $end            reduce using rule 3 (declaration -> TYPE IDENTIFIER ASSIGN array .)
+
+
+state 8
+
+    (4) array -> LBRACKET . elements_opt RBRACKET
+    (5) elements_opt -> . elements
+    (6) elements_opt -> . elements COMMA
+    (7) elements_opt -> . empty
+    (8) elements -> . value
+    (9) elements -> . elements COMMA value
+    (15) empty -> .
+    (10) value -> . NUMBER
+    (11) value -> . STRING
+    (12) value -> . BOOLEAN
+    (13) value -> . NULL
+    (14) value -> . array
+    (4) array -> . LBRACKET elements_opt RBRACKET
+
+    RBRACKET        reduce using rule 15 (empty -> .)
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 14
+    BOOLEAN         shift and go to state 15
+    NULL            shift and go to state 16
+    LBRACKET        shift and go to state 8
+
+    elements_opt                   shift and go to state 9
+    elements                       shift and go to state 10
+    empty                          shift and go to state 11
+    value                          shift and go to state 12
+    array                          shift and go to state 17
+
+state 9
+
+    (4) array -> LBRACKET elements_opt . RBRACKET
+
+    RBRACKET        shift and go to state 18
+
+
+state 10
+
+    (5) elements_opt -> elements .
+    (6) elements_opt -> elements . COMMA
+    (9) elements -> elements . COMMA value
+
+    RBRACKET        reduce using rule 5 (elements_opt -> elements .)
+    COMMA           shift and go to state 19
+
+
+state 11
+
+    (7) elements_opt -> empty .
+
+    RBRACKET        reduce using rule 7 (elements_opt -> empty .)
+
+
+state 12
+
+    (8) elements -> value .
+
+    COMMA           reduce using rule 8 (elements -> value .)
+    RBRACKET        reduce using rule 8 (elements -> value .)
+
+
+state 13
+
+    (10) value -> NUMBER .
+
+    COMMA           reduce using rule 10 (value -> NUMBER .)
+    RBRACKET        reduce using rule 10 (value -> NUMBER .)
+
+
+state 14
+
+    (11) value -> STRING .
+
+    COMMA           reduce using rule 11 (value -> STRING .)
+    RBRACKET        reduce using rule 11 (value -> STRING .)
+
+
+state 15
+
+    (12) value -> BOOLEAN .
+
+    COMMA           reduce using rule 12 (value -> BOOLEAN .)
+    RBRACKET        reduce using rule 12 (value -> BOOLEAN .)
+
+
+state 16
+
+    (13) value -> NULL .
+
+    COMMA           reduce using rule 13 (value -> NULL .)
+    RBRACKET        reduce using rule 13 (value -> NULL .)
+
+
+state 17
+
+    (14) value -> array .
+
+    COMMA           reduce using rule 14 (value -> array .)
+    RBRACKET        reduce using rule 14 (value -> array .)
+
+
+state 18
+
+    (4) array -> LBRACKET elements_opt RBRACKET .
+
+    SEMICOLON       reduce using rule 4 (array -> LBRACKET elements_opt RBRACKET .)
+    $end            reduce using rule 4 (array -> LBRACKET elements_opt RBRACKET .)
+    COMMA           reduce using rule 4 (array -> LBRACKET elements_opt RBRACKET .)
+    RBRACKET        reduce using rule 4 (array -> LBRACKET elements_opt RBRACKET .)
+
+
+state 19
+
+    (6) elements_opt -> elements COMMA .
+    (9) elements -> elements COMMA . value
+    (10) value -> . NUMBER
+    (11) value -> . STRING
+    (12) value -> . BOOLEAN
+    (13) value -> . NULL
+    (14) value -> . array
+    (4) array -> . LBRACKET elements_opt RBRACKET
+
+    RBRACKET        reduce using rule 6 (elements_opt -> elements COMMA .)
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 14
+    BOOLEAN         shift and go to state 15
+    NULL            shift and go to state 16
+    LBRACKET        shift and go to state 8
+
+    value                          shift and go to state 20
+    array                          shift and go to state 17
+
+state 20
+
+    (9) elements -> elements COMMA value .
+
+    COMMA           reduce using rule 9 (elements -> elements COMMA value .)
+    RBRACKET        reduce using rule 9 (elements -> elements COMMA value .)
+

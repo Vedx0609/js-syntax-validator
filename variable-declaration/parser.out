@@ -1,0 +1,580 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement_simple
+Rule 1     statement_simple -> TYPE IDENTIFIER ASSIGN expressions
+Rule 2     statement_simple -> TYPE IDENTIFIER ASSIGN expressions COMMA multiple_assign
+Rule 3     statement_simple -> IDENTIFIER ASSIGN expressions
+Rule 4     expressions -> expression
+Rule 5     expressions -> expression SEMICOLON
+Rule 6     expressions -> expression LOGICAL expressions
+Rule 7     expression -> expression PLUS expression
+Rule 8     expression -> expression MINUS expression
+Rule 9     expression -> expression TIMES expression
+Rule 10    expression -> expression DIVIDE expression
+Rule 11    expression -> IDENTIFIER
+Rule 12    expression -> NUMBER
+Rule 13    expression -> BOOLEAN
+Rule 14    expression -> NULL
+Rule 15    expression -> STRING
+Rule 16    multiple_assign -> IDENTIFIER ASSIGN expression
+Rule 17    multiple_assign -> IDENTIFIER ASSIGN expression COMMA multiple_assign
+
+Terminals, with rules where they appear
+
+ASSIGN               : 1 2 3 16 17
+BOOLEAN              : 13
+COMMA                : 2 17
+DIVIDE               : 10
+IDENTIFIER           : 1 2 3 11 16 17
+LOGICAL              : 6
+MINUS                : 8
+NULL                 : 14
+NUMBER               : 12
+PLUS                 : 7
+SEMICOLON            : 5
+STRING               : 15
+TIMES                : 9
+TYPE                 : 1 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 4 5 6 7 7 8 8 9 9 10 10 16 17
+expressions          : 1 2 3 6
+multiple_assign      : 2 17
+statement_simple     : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement_simple
+    (1) statement_simple -> . TYPE IDENTIFIER ASSIGN expressions
+    (2) statement_simple -> . TYPE IDENTIFIER ASSIGN expressions COMMA multiple_assign
+    (3) statement_simple -> . IDENTIFIER ASSIGN expressions
+
+    TYPE            shift and go to state 2
+    IDENTIFIER      shift and go to state 3
+
+    statement_simple               shift and go to state 1
+
+state 1
+
+    (0) S' -> statement_simple .
+
+
+
+state 2
+
+    (1) statement_simple -> TYPE . IDENTIFIER ASSIGN expressions
+    (2) statement_simple -> TYPE . IDENTIFIER ASSIGN expressions COMMA multiple_assign
+
+    IDENTIFIER      shift and go to state 4
+
+
+state 3
+
+    (3) statement_simple -> IDENTIFIER . ASSIGN expressions
+
+    ASSIGN          shift and go to state 5
+
+
+state 4
+
+    (1) statement_simple -> TYPE IDENTIFIER . ASSIGN expressions
+    (2) statement_simple -> TYPE IDENTIFIER . ASSIGN expressions COMMA multiple_assign
+
+    ASSIGN          shift and go to state 6
+
+
+state 5
+
+    (3) statement_simple -> IDENTIFIER ASSIGN . expressions
+    (4) expressions -> . expression
+    (5) expressions -> . expression SEMICOLON
+    (6) expressions -> . expression LOGICAL expressions
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . expression TIMES expression
+    (10) expression -> . expression DIVIDE expression
+    (11) expression -> . IDENTIFIER
+    (12) expression -> . NUMBER
+    (13) expression -> . BOOLEAN
+    (14) expression -> . NULL
+    (15) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    NULL            shift and go to state 12
+    STRING          shift and go to state 13
+
+    expressions                    shift and go to state 8
+    expression                     shift and go to state 9
+
+state 6
+
+    (1) statement_simple -> TYPE IDENTIFIER ASSIGN . expressions
+    (2) statement_simple -> TYPE IDENTIFIER ASSIGN . expressions COMMA multiple_assign
+    (4) expressions -> . expression
+    (5) expressions -> . expression SEMICOLON
+    (6) expressions -> . expression LOGICAL expressions
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . expression TIMES expression
+    (10) expression -> . expression DIVIDE expression
+    (11) expression -> . IDENTIFIER
+    (12) expression -> . NUMBER
+    (13) expression -> . BOOLEAN
+    (14) expression -> . NULL
+    (15) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    NULL            shift and go to state 12
+    STRING          shift and go to state 13
+
+    expressions                    shift and go to state 14
+    expression                     shift and go to state 9
+
+state 7
+
+    (11) expression -> IDENTIFIER .
+
+    SEMICOLON       reduce using rule 11 (expression -> IDENTIFIER .)
+    LOGICAL         reduce using rule 11 (expression -> IDENTIFIER .)
+    PLUS            reduce using rule 11 (expression -> IDENTIFIER .)
+    MINUS           reduce using rule 11 (expression -> IDENTIFIER .)
+    TIMES           reduce using rule 11 (expression -> IDENTIFIER .)
+    DIVIDE          reduce using rule 11 (expression -> IDENTIFIER .)
+    $end            reduce using rule 11 (expression -> IDENTIFIER .)
+    COMMA           reduce using rule 11 (expression -> IDENTIFIER .)
+
+
+state 8
+
+    (3) statement_simple -> IDENTIFIER ASSIGN expressions .
+
+    $end            reduce using rule 3 (statement_simple -> IDENTIFIER ASSIGN expressions .)
+
+
+state 9
+
+    (4) expressions -> expression .
+    (5) expressions -> expression . SEMICOLON
+    (6) expressions -> expression . LOGICAL expressions
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+    (9) expression -> expression . TIMES expression
+    (10) expression -> expression . DIVIDE expression
+
+    $end            reduce using rule 4 (expressions -> expression .)
+    COMMA           reduce using rule 4 (expressions -> expression .)
+    SEMICOLON       shift and go to state 15
+    LOGICAL         shift and go to state 16
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+    TIMES           shift and go to state 19
+    DIVIDE          shift and go to state 20
+
+
+state 10
+
+    (12) expression -> NUMBER .
+
+    SEMICOLON       reduce using rule 12 (expression -> NUMBER .)
+    LOGICAL         reduce using rule 12 (expression -> NUMBER .)
+    PLUS            reduce using rule 12 (expression -> NUMBER .)
+    MINUS           reduce using rule 12 (expression -> NUMBER .)
+    TIMES           reduce using rule 12 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 12 (expression -> NUMBER .)
+    $end            reduce using rule 12 (expression -> NUMBER .)
+    COMMA           reduce using rule 12 (expression -> NUMBER .)
+
+
+state 11
+
+    (13) expression -> BOOLEAN .
+
+    SEMICOLON       reduce using rule 13 (expression -> BOOLEAN .)
+    LOGICAL         reduce using rule 13 (expression -> BOOLEAN .)
+    PLUS            reduce using rule 13 (expression -> BOOLEAN .)
+    MINUS           reduce using rule 13 (expression -> BOOLEAN .)
+    TIMES           reduce using rule 13 (expression -> BOOLEAN .)
+    DIVIDE          reduce using rule 13 (expression -> BOOLEAN .)
+    $end            reduce using rule 13 (expression -> BOOLEAN .)
+    COMMA           reduce using rule 13 (expression -> BOOLEAN .)
+
+
+state 12
+
+    (14) expression -> NULL .
+
+    SEMICOLON       reduce using rule 14 (expression -> NULL .)
+    LOGICAL         reduce using rule 14 (expression -> NULL .)
+    PLUS            reduce using rule 14 (expression -> NULL .)
+    MINUS           reduce using rule 14 (expression -> NULL .)
+    TIMES           reduce using rule 14 (expression -> NULL .)
+    DIVIDE          reduce using rule 14 (expression -> NULL .)
+    $end            reduce using rule 14 (expression -> NULL .)
+    COMMA           reduce using rule 14 (expression -> NULL .)
+
+
+state 13
+
+    (15) expression -> STRING .
+
+    SEMICOLON       reduce using rule 15 (expression -> STRING .)
+    LOGICAL         reduce using rule 15 (expression -> STRING .)
+    PLUS            reduce using rule 15 (expression -> STRING .)
+    MINUS           reduce using rule 15 (expression -> STRING .)
+    TIMES           reduce using rule 15 (expression -> STRING .)
+    DIVIDE          reduce using rule 15 (expression -> STRING .)
+    $end            reduce using rule 15 (expression -> STRING .)
+    COMMA           reduce using rule 15 (expression -> STRING .)
+
+
+state 14
+
+    (1) statement_simple -> TYPE IDENTIFIER ASSIGN expressions .
+    (2) statement_simple -> TYPE IDENTIFIER ASSIGN expressions . COMMA multiple_assign
+
+    $end            reduce using rule 1 (statement_simple -> TYPE IDENTIFIER ASSIGN expressions .)
+    COMMA           shift and go to state 21
+
+
+state 15
+
+    (5) expressions -> expression SEMICOLON .
+
+    $end            reduce using rule 5 (expressions -> expression SEMICOLON .)
+    COMMA           reduce using rule 5 (expressions -> expression SEMICOLON .)
+
+
+state 16
+
+    (6) expressions -> expression LOGICAL . expressions
+    (4) expressions -> . expression
+    (5) expressions -> . expression SEMICOLON
+    (6) expressions -> . expression LOGICAL expressions
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . expression TIMES expression
+    (10) expression -> . expression DIVIDE expression
+    (11) expression -> . IDENTIFIER
+    (12) expression -> . NUMBER
+    (13) expression -> . BOOLEAN
+    (14) expression -> . NULL
+    (15) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    NULL            shift and go to state 12
+    STRING          shift and go to state 13
+
+    expression                     shift and go to state 9
+    expressions                    shift and go to state 22
+
+state 17
+
+    (7) expression -> expression PLUS . expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . expression TIMES expression
+    (10) expression -> . expression DIVIDE expression
+    (11) expression -> . IDENTIFIER
+    (12) expression -> . NUMBER
+    (13) expression -> . BOOLEAN
+    (14) expression -> . NULL
+    (15) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    NULL            shift and go to state 12
+    STRING          shift and go to state 13
+
+    expression                     shift and go to state 23
+
+state 18
+
+    (8) expression -> expression MINUS . expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . expression TIMES expression
+    (10) expression -> . expression DIVIDE expression
+    (11) expression -> . IDENTIFIER
+    (12) expression -> . NUMBER
+    (13) expression -> . BOOLEAN
+    (14) expression -> . NULL
+    (15) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    NULL            shift and go to state 12
+    STRING          shift and go to state 13
+
+    expression                     shift and go to state 24
+
+state 19
+
+    (9) expression -> expression TIMES . expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . expression TIMES expression
+    (10) expression -> . expression DIVIDE expression
+    (11) expression -> . IDENTIFIER
+    (12) expression -> . NUMBER
+    (13) expression -> . BOOLEAN
+    (14) expression -> . NULL
+    (15) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    NULL            shift and go to state 12
+    STRING          shift and go to state 13
+
+    expression                     shift and go to state 25
+
+state 20
+
+    (10) expression -> expression DIVIDE . expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . expression TIMES expression
+    (10) expression -> . expression DIVIDE expression
+    (11) expression -> . IDENTIFIER
+    (12) expression -> . NUMBER
+    (13) expression -> . BOOLEAN
+    (14) expression -> . NULL
+    (15) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    NULL            shift and go to state 12
+    STRING          shift and go to state 13
+
+    expression                     shift and go to state 26
+
+state 21
+
+    (2) statement_simple -> TYPE IDENTIFIER ASSIGN expressions COMMA . multiple_assign
+    (16) multiple_assign -> . IDENTIFIER ASSIGN expression
+    (17) multiple_assign -> . IDENTIFIER ASSIGN expression COMMA multiple_assign
+
+    IDENTIFIER      shift and go to state 27
+
+    multiple_assign                shift and go to state 28
+
+state 22
+
+    (6) expressions -> expression LOGICAL expressions .
+
+    $end            reduce using rule 6 (expressions -> expression LOGICAL expressions .)
+    COMMA           reduce using rule 6 (expressions -> expression LOGICAL expressions .)
+
+
+state 23
+
+    (7) expression -> expression PLUS expression .
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+    (9) expression -> expression . TIMES expression
+    (10) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 7 (expression -> expression PLUS expression .)
+    LOGICAL         reduce using rule 7 (expression -> expression PLUS expression .)
+    $end            reduce using rule 7 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 7 (expression -> expression PLUS expression .)
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+    TIMES           shift and go to state 19
+    DIVIDE          shift and go to state 20
+
+  ! PLUS            [ reduce using rule 7 (expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 7 (expression -> expression PLUS expression .) ]
+  ! TIMES           [ reduce using rule 7 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 7 (expression -> expression PLUS expression .) ]
+
+
+state 24
+
+    (8) expression -> expression MINUS expression .
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+    (9) expression -> expression . TIMES expression
+    (10) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 8 (expression -> expression MINUS expression .)
+    LOGICAL         reduce using rule 8 (expression -> expression MINUS expression .)
+    $end            reduce using rule 8 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 8 (expression -> expression MINUS expression .)
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+    TIMES           shift and go to state 19
+    DIVIDE          shift and go to state 20
+
+  ! PLUS            [ reduce using rule 8 (expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 8 (expression -> expression MINUS expression .) ]
+  ! TIMES           [ reduce using rule 8 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 8 (expression -> expression MINUS expression .) ]
+
+
+state 25
+
+    (9) expression -> expression TIMES expression .
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+    (9) expression -> expression . TIMES expression
+    (10) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 9 (expression -> expression TIMES expression .)
+    LOGICAL         reduce using rule 9 (expression -> expression TIMES expression .)
+    $end            reduce using rule 9 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 9 (expression -> expression TIMES expression .)
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+    TIMES           shift and go to state 19
+    DIVIDE          shift and go to state 20
+
+  ! PLUS            [ reduce using rule 9 (expression -> expression TIMES expression .) ]
+  ! MINUS           [ reduce using rule 9 (expression -> expression TIMES expression .) ]
+  ! TIMES           [ reduce using rule 9 (expression -> expression TIMES expression .) ]
+  ! DIVIDE          [ reduce using rule 9 (expression -> expression TIMES expression .) ]
+
+
+state 26
+
+    (10) expression -> expression DIVIDE expression .
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+    (9) expression -> expression . TIMES expression
+    (10) expression -> expression . DIVIDE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 10 (expression -> expression DIVIDE expression .)
+    LOGICAL         reduce using rule 10 (expression -> expression DIVIDE expression .)
+    $end            reduce using rule 10 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 10 (expression -> expression DIVIDE expression .)
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+    TIMES           shift and go to state 19
+    DIVIDE          shift and go to state 20
+
+  ! PLUS            [ reduce using rule 10 (expression -> expression DIVIDE expression .) ]
+  ! MINUS           [ reduce using rule 10 (expression -> expression DIVIDE expression .) ]
+  ! TIMES           [ reduce using rule 10 (expression -> expression DIVIDE expression .) ]
+  ! DIVIDE          [ reduce using rule 10 (expression -> expression DIVIDE expression .) ]
+
+
+state 27
+
+    (16) multiple_assign -> IDENTIFIER . ASSIGN expression
+    (17) multiple_assign -> IDENTIFIER . ASSIGN expression COMMA multiple_assign
+
+    ASSIGN          shift and go to state 29
+
+
+state 28
+
+    (2) statement_simple -> TYPE IDENTIFIER ASSIGN expressions COMMA multiple_assign .
+
+    $end            reduce using rule 2 (statement_simple -> TYPE IDENTIFIER ASSIGN expressions COMMA multiple_assign .)
+
+
+state 29
+
+    (16) multiple_assign -> IDENTIFIER ASSIGN . expression
+    (17) multiple_assign -> IDENTIFIER ASSIGN . expression COMMA multiple_assign
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . expression TIMES expression
+    (10) expression -> . expression DIVIDE expression
+    (11) expression -> . IDENTIFIER
+    (12) expression -> . NUMBER
+    (13) expression -> . BOOLEAN
+    (14) expression -> . NULL
+    (15) expression -> . STRING
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    NULL            shift and go to state 12
+    STRING          shift and go to state 13
+
+    expression                     shift and go to state 30
+
+state 30
+
+    (16) multiple_assign -> IDENTIFIER ASSIGN expression .
+    (17) multiple_assign -> IDENTIFIER ASSIGN expression . COMMA multiple_assign
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+    (9) expression -> expression . TIMES expression
+    (10) expression -> expression . DIVIDE expression
+
+    $end            reduce using rule 16 (multiple_assign -> IDENTIFIER ASSIGN expression .)
+    COMMA           shift and go to state 31
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+    TIMES           shift and go to state 19
+    DIVIDE          shift and go to state 20
+
+
+state 31
+
+    (17) multiple_assign -> IDENTIFIER ASSIGN expression COMMA . multiple_assign
+    (16) multiple_assign -> . IDENTIFIER ASSIGN expression
+    (17) multiple_assign -> . IDENTIFIER ASSIGN expression COMMA multiple_assign
+
+    IDENTIFIER      shift and go to state 27
+
+    multiple_assign                shift and go to state 32
+
+state 32
+
+    (17) multiple_assign -> IDENTIFIER ASSIGN expression COMMA multiple_assign .
+
+    $end            reduce using rule 17 (multiple_assign -> IDENTIFIER ASSIGN expression COMMA multiple_assign .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 23 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 23 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 24 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 24 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 25 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 25 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 25 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 25 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 26 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 26 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 26 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 26 resolved as shift
